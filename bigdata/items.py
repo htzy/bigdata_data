@@ -5,13 +5,12 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy.item import Item, Field
 
 
-class BigdataItem(scrapy.Item):
+class BigdataItem(Item):
     # define the fields for your item here like:
-    title = scrapy.Field()
-    link = scrapy.Field()
-    desc = scrapy.Field()
-    name = scrapy.Field()
-    pass
+    title = Field()
+    link = Field()
+    desc = Field()
+    name = Field()
