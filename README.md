@@ -31,3 +31,15 @@ $ scrapy shell "www.baidu.com"
 # use exit() or ctrl-D to exit
 >>>exit()
 ```
+```python
+# ignore web site contains 'window', '线下','预告', '报名地址'
+```
+
+
+
+# references
+[demo code from scrapy in github](https://github.com/scrapy/dirbot)
+
+# tools
+[firepath in mozilla](https://addons.mozilla.org/en-us/firefox/addon/firepath/)
+[xpath-checker in mazilla](https://addons.mozilla.org/zh-cn/firefox/addon/xpath-checker/)
