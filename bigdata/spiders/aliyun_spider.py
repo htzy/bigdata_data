@@ -13,10 +13,10 @@ class AliyunSpider(Spider):
     allowed_domains = ["aliyun.com"]
     start_urls = [
         "https://yq.aliyun.com/search/articles/?q=docker&idex=default&days=&p=1"
-        # , "https://yq.aliyun.com/search/articles/?q=maven&idex=default&days=&p=1"
-        # , "https://yq.aliyun.com/search/articles/?q=scala&idex=default&days=&p=1"
-        # , "https://yq.aliyun.com/search/articles/?q=hadoop&idex=default&days=&p=1"
-        # , "https://yq.aliyun.com/search/articles/?q=spark&idex=default&days=&p=1"
+        , "https://yq.aliyun.com/search/articles/?q=maven&idex=default&days=&p=1"
+        , "https://yq.aliyun.com/search/articles/?q=scala&idex=default&days=&p=1"
+        , "https://yq.aliyun.com/search/articles/?q=hadoop&idex=default&days=&p=1"
+        , "https://yq.aliyun.com/search/articles/?q=spark&idex=default&days=&p=1"
     ]
 
     def parse(self, response):
@@ -40,8 +40,8 @@ class AliyunSpider(Spider):
             item['link'] = sel.xpath('h2/div/a/@href').extract()[0]
             yield item
 
-        # new_url_node = response.xpath('//a[@rel="next"]/@href').extract()
-        # if new_url_node:
-        #     new_url = "https://yq.aliyun.com" + new_url_node[0]
-        #     print new_url
-        #     yield Request(new_url, callback=self.parse)
+        new_url_node = response.xpath('//a[@rel="next"]/@href').extract()
+        if new_url_node:
+            new_url = "https://yq.aliyun.com" + new_url_node[0]
+            print new_url
+            yield Request(new_url, callback=self.parse)

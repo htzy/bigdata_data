@@ -46,7 +46,7 @@ u'\u7ebf\u4e0b'
 
 ```
 # TODO
-- use multi start_url
+- save csv by settings
 
 # references
 [demo code from scrapy in github](https://github.com/scrapy/dirbot)
