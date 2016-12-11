@@ -27,15 +27,26 @@ $ sudo apt-get update && sudo apt-get install scrapy-0.25
 $ scrapy startproject bigdata
 
 # try to use Selector in Shell
-$ scrapy shell "www.baidu.com"
+$ scrapy shell "www.huangshihe.com"
 # use exit() or ctrl-D to exit
 >>>exit()
 ```
-```python
-# ignore web site contains 'window', '线下','预告', '报名地址'
+```shell
+# ignore web site contains 'window', '线下\u7ebf\u4e0b','预告\u9884\u544a', '报名地址\u62a5\u540d\u5730\u5740'
+# get char
+>>> s = '线下'.decode('utf-8')
+>>> s
+u'\u7ebf\u4e0b'
+
+# search regular expression, ignore case
+>>> re.search(u'window|线下|预告|报名地址', item['title'], re.I)
+
+# drop this item, (from scrapy.exceptions import DropItem)
+>>> raise DropItem("Contains word that you don't want: %s" % item['title'])
+
 ```
-
-
+# TODO
+- use multi start_url
 
 # references
 [demo code from scrapy in github](https://github.com/scrapy/dirbot)

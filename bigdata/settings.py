@@ -64,9 +64,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'bigdata.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'bigdata.aliyun.duplicates_pipeline.DuplicatesPipeline': 100,
+    'bigdata.aliyun.content_pipeline.ContentPipeline': 300,
+    'bigdata.aliyun.json_writer_pipeline.JsonWriterPipeline': 800
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +90,6 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# FEED_URL= './item.csv'
+# FEED_FORMAT='csv'
