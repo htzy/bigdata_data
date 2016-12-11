@@ -7,7 +7,7 @@ class SearchItem(Item):
     title = Field()
     abstract = Field()
     author = Field()
-    authorLink = Field()
+    author_link = Field()
     tags = Field()
     viewers = Field()
     like = Field()
