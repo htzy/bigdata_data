@@ -1,6 +1,5 @@
 from scrapy.spider import Spider
 from bigdata.aliyun.items import SearchItem
-from lxml import etree
 
 # search web site
 # https://yq.aliyun.com/search?type=ARTICLE&q=${keyword}
@@ -20,7 +19,17 @@ class AliyunSpider(Spider):
     def parse(self, response):
         for sel in response.xpath('//div[@class="media _articles-item"]'):
             item = SearchItem()
-            # TODO remove <a> and <span>
-            item['title'] = sel.xpath('div[2]/h2/div/a').extract()
-
+            # xpath('string(.)') can get all text in selector and remove <span>
+            item['title'] = sel.xpath('div[2]/h2/div/a').xpath('string(.)').extract()
+            # item['abstract'] = sel.xpath('div[2]/div[2]').xpath('string(.)').extract()[0].strip()
+            item['abstract'] = ''.join(sel.xpath('div[2]/div[2]/text() | div[2]/div[2]//span/text()').extract()).strip()
+            # item['abstract'] = sel.xpath('div[2]/div[2]/a/preceding-sibling::node()').extract()
+            item['author'] = sel.xpath('div[2]/div/span/a/text()').extract()
+            item['authorLink'] = sel.xpath('div[2]/div/span/a/@href').extract()
+            item['tags'] = sel.xpath('div[2]/div[3]//a/text()').extract()
+            item['viewers'] = sel.xpath('div[2]/div[4]/span[1]/text()').extract()
+            item['like'] = sel.xpath('div[2]/div[4]/span[2]/text()').extract()
+            item['comments'] = sel.xpath('div[2]/div[4]/span[3]/text()').extract()
+            item['time'] = sel.xpath('div[2]/h2/span/time/@datetime').extract()
+            item['link'] = sel.xpath('div[2]/h2/div/a/@href').extract()
             yield item
