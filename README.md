@@ -45,8 +45,6 @@ u'\u7ebf\u4e0b'
 >>> raise DropItem("Contains word that you don't want: %s" % item['title'])
 
 ```
-# TODO
-- save csv by settings
 
 # references
 [demo code from scrapy in github](https://github.com/scrapy/dirbot)
